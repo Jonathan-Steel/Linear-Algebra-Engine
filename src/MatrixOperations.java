@@ -57,14 +57,15 @@ public class MatrixOperations {
     }
 
     // Transpose
-    // TODO: Doesn't work.
     public static Matrix transpose(Matrix matrix) {
         Matrix transposedMatrix = new Matrix(matrix.getWidth(), matrix.getHeight());
-        for (int i = 0; i < matrix.getWidth(); ++i) {
-            for (int j = 0; j < matrix.getHeight(); ++j) {
-                transposedMatrix.getMatrix()[j][i] = matrix.getMatrixCol(i)[j];
+
+        for (int i = 0; i < transposedMatrix.getHeight(); ++i) {
+            for (int j = 0; j < transposedMatrix.getWidth(); ++j) {
+                transposedMatrix.setMatrixCell(i, j, matrix.getMatrixCol(i)[j]);
             }
         }
+
         return transposedMatrix;
     }
 

@@ -6,9 +6,9 @@ A Java program which can perform operations useful work with basic linear algebr
 * Matrix Addition and Subraction
 * Matrix Multiplication
 * Dot Product
+* Transposition
 ***
 ## Upcoming Features
-* Transposition
 * Inversion
 * Cross Prodcut
 * Determinants

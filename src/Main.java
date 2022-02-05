@@ -5,8 +5,12 @@ public class Main {
         Matrix matrixThree = MatrixOperations.multiply(matrixOne, matrixTwo);
 
         Matrix matrixFour = new Matrix( new int[][] { {1, 2}, {3, 4}, {5, 6} } );
+        matrixFour.display();
+        System.out.println(matrixFour.getHeight() + "x" + matrixFour.getWidth());
 
-        MatrixOperations.transpose(matrixFour).display();
+        Matrix newMat = MatrixOperations.transpose(matrixFour);
+        newMat.display();
+        System.out.println(newMat.getHeight() + "x" + newMat.getWidth());
     }
 }
 

@@ -9,7 +9,7 @@ public class Matrix {
     {
         this.height = height;
         this.width = width;
-        this.matrix = new int[width][height];
+        this.matrix = new int[height][width];
     }
 
     public Matrix(int[][] init)
