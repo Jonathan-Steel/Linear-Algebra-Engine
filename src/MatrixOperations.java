@@ -23,6 +23,14 @@ public class MatrixOperations {
         }
     }
 
+    public static Matrix addMany(Matrix[] matrices) {
+        Matrix newMatrix = new Matrix(matrices[0].getHeight(), matrices[1].getWidth());
+        for (Matrix matrix : matrices) {
+            newMatrix = add(newMatrix, matrix);
+        }
+        return newMatrix;
+    }
+
     // Subtraction
     public static Matrix subtract(Matrix firstMatrix, Matrix secondMatrix) {
         if (firstMatrix.getHeight() != secondMatrix.getHeight() || firstMatrix.getWidth() != secondMatrix.getWidth()) {
@@ -39,6 +47,17 @@ public class MatrixOperations {
 
             return newMatrix;
         }
+    }
+
+    // Constant Multiplication
+    public static Matrix constantMultiply(Matrix matrix, double constant) {
+        Matrix newMatrix = new Matrix(matrix.getHeight(), matrix.getWidth());
+        for (int i = 0; i < matrix.getHeight(); i++) {
+            for (int j = 0; j < matrix.getWidth(); j++) {
+                newMatrix.setMatrixCell(i, j, constant * matrix.getMatrix()[i][j]);
+            }
+        }
+        return newMatrix;
     }
 
     // Multiplication
@@ -119,6 +138,73 @@ public class MatrixOperations {
     }
 
     // Determinant
+    public static Matrix determinant(Matrix matrix) {
+        if (matrix.getHeight() != matrix.getWidth()) {
+            throw new RuntimeException("You can only calculate determinants of nxn matrices");
+        }
+        if (matrix.getHeight() == 1) {
+            return matrix;
+        }
+        Matrix[] sumArray = new Matrix[matrix.getWidth()];
+        for (int i = 0; i < matrix.getWidth(); i++) {
+            sumArray[i] = constantMultiply(cofactor(matrix, 0, i), matrix.getMatrix()[0][i]);
+        }
+        return addMany(sumArray);
+    }
+
+    // Cofactor
+    public static Matrix cofactor(Matrix matrix, int row, int col) {
+        if (matrix.getHeight() != matrix.getWidth()) {
+            throw new RuntimeException("You can only calculate determinants of nxn matrices");
+        }
+        return constantMultiply( determinant( deleteCol( deleteRow(matrix, row) , col ) ), Math.pow(-1, row + col) );
+    }
+
+    public static Matrix deleteRow(Matrix matrix, int row) {
+        if (matrix.getHeight() == 1) {
+            throw new RuntimeException("The matrix must be taller than a 1xn");
+        }
+
+        Matrix newMatrix = new Matrix(matrix.getHeight() - 1, matrix.getWidth());
+
+        int i2 = 0, j2 = 0;
+        for (int i = 0; i < matrix.getHeight(); i++) {
+            if (i == row) {
+                continue;
+            }
+            j2 = 0;
+            for (int j = 0; j < matrix.getWidth(); j++) {
+                newMatrix.setMatrixCell(i2, j2, matrix.getMatrix()[i][j]);
+                j2++;
+            }
+            i2++;
+        }
+
+        return newMatrix;
+    }
+
+    public static Matrix deleteCol(Matrix matrix, int col) {
+        if (matrix.getWidth() == 1) {
+            throw new RuntimeException("The matrix must be taller than a nx1");
+        }
+
+        Matrix newMatrix = new Matrix(matrix.getHeight(), matrix.getWidth() - 1);
+
+        int i2 = 0, j2 = 0;
+        for (int i = 0; i < matrix.getHeight(); i++) {
+            j2 = 0;
+            for (int j = 0; j < matrix.getWidth(); j++) {
+                if (j == col) {
+                    continue;
+                }
+                newMatrix.setMatrixCell(i2, j2, matrix.getMatrix()[i][j]);
+                j2++;
+            }
+            i2++;
+        }
+
+        return newMatrix;
+    }
 
     // Eigenvalues
 

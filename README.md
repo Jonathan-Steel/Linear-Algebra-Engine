@@ -8,8 +8,8 @@ A Java program which can perform operations useful work with basic linear algebr
 * Dot Product
 * Cross Product
 * Transposition
+* Determinants
 ***
 ## Upcoming Features
 * Inversion
-* Determinants
 * Eigenvalues and Eigenvectors
