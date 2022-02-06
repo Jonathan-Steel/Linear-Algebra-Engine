@@ -70,35 +70,35 @@ public class MatrixOperations {
     }
 
     // Dot Product
-    public static int dot_product(int[] firstVector, int[] secondVector) {
-        int[] products = new int[firstVector.length];
+    public static double dot_product(double[] firstVector, double[] secondVector) {
+        double[] products = new double[firstVector.length];
         for (int i = 0; i < firstVector.length; ++i) {
             products[i] = firstVector[i] * secondVector[i];
         }
-        int sum = 0;
-        for (int value: products) {
+        double sum = 0;
+        for (double value: products) {
             sum += value;
         }
         return sum;
     }
 
-    public static int dot_product(Matrix firstMatrix, Matrix secondMatrix) {
-        int[] firstVector = vector_to_array(firstMatrix);
-        int[] secondVector = vector_to_array(secondMatrix);
+    public static double dot_product(Matrix firstMatrix, Matrix secondMatrix) {
+        double[] firstVector = vector_to_array(firstMatrix);
+        double[] secondVector = vector_to_array(secondMatrix);
 
-        int[] products = new int[firstVector.length];
+        double[] products = new double[firstVector.length];
         for (int i = 0; i < firstVector.length; ++i) {
             products[i] = firstVector[i] * secondVector[i];
         }
-        int sum = 0;
-        for (int value: products) {
+        double sum = 0;
+        for (double value: products) {
             sum += value;
         }
         return sum;
     }
 
     // Vector to Array
-    public static int[] vector_to_array(Matrix matrix) {
+    public static double[] vector_to_array(Matrix matrix) {
         if (matrix.getHeight() == 1) {
             return matrix.getMatrix()[0];
         } else if (matrix.getWidth() == 1) {
@@ -109,8 +109,26 @@ public class MatrixOperations {
     }
 
     // Cross Product
+    public static double[] cross_product(double[] firstVector, double[] secondVector) {
+        if (firstVector.length != 3 || secondVector.length != 3) {
+            throw new RuntimeException("Please enter a 3x1 vector.");
+        }
+        return new double[] {firstVector[1] * secondVector[2] - firstVector[2] * secondVector[1],
+                             firstVector[2] * secondVector[0] - firstVector[0] * secondVector[2],
+                             firstVector[0] * secondVector[1] - firstVector[1] * secondVector[0]};
+    }
+
+    // Determinant
+
+    // Eigenvalues
+
+    // Eigenvectors
 
     // Invert
+
+    // ----------------------------------
+
+    // Diagonalise
 
     // Gaussian Elimination
 }

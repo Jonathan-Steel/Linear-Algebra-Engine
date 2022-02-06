@@ -1,16 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        Matrix matrixOne = new Matrix( new int[][] { {1, 0}, {0, 1} } );
-        Matrix matrixTwo = new Matrix( new int[][] { {1, 0}, {0, 1} } );
+        Matrix matrixOne = new Matrix( new double[][] { {1, 0}, {0, 1} } );
+        Matrix matrixTwo = new Matrix( new double[][] { {1, 0}, {0, 1} } );
         Matrix matrixThree = MatrixOperations.multiply(matrixOne, matrixTwo);
 
-        Matrix matrixFour = new Matrix( new int[][] { {1, 2}, {3, 4}, {5, 6} } );
-        matrixFour.display();
-        System.out.println(matrixFour.getHeight() + "x" + matrixFour.getWidth());
-
-        Matrix newMat = MatrixOperations.transpose(matrixFour);
-        newMat.display();
-        System.out.println(newMat.getHeight() + "x" + newMat.getWidth());
+        matrixOne.display();
+        matrixTwo.display();
+        matrixThree.display();
     }
 }
 

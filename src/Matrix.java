@@ -1,18 +1,19 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Matrix {
     private final int height;
     private final int width;
-    private int[][] matrix;
+    private double[][] matrix;
 
     public Matrix(int height, int width)
     {
         this.height = height;
         this.width = width;
-        this.matrix = new int[height][width];
+        this.matrix = new double[height][width];
     }
 
-    public Matrix(int[][] init)
+    public Matrix(double[][] init)
     {
         this.height = init.length;
         this.width = init[0].length;
@@ -27,16 +28,16 @@ public class Matrix {
         return height;
     }
 
-    public int[][] getMatrix() {
+    public double[][] getMatrix() {
         return matrix;
     }
 
-    public void setMatrixCell(int row, int col, int value) {
+    public void setMatrixCell(int row, int col, double value) {
         matrix[row][col] = value;
     }
 
-    public int[] getMatrixCol(int col) {
-        int[] colArray = new int[height];
+    public double[] getMatrixCol(int col) {
+        double[] colArray = new double[height];
         for (int i = 0; i < matrix.length; ++i) {
             colArray[i] = matrix[i][col];
         }
@@ -45,14 +46,20 @@ public class Matrix {
 
     public void display() {
 
-        for (int[] row : matrix)
+        // Decimal Format
+        DecimalFormat threeDP = new DecimalFormat("###.###");
+
+        System.out.println();
+        for (double[] row : matrix)
         {
-            for (int item : row)
+            System.out.print("| ");
+            for (double item : row)
             {
-                System.out.print(item + " ");
+                System.out.print("\t" + threeDP.format(item) + "\t");
             }
-            System.out.println();
+            System.out.println(" |");
         }
+        System.out.println();
     }
 
 }
